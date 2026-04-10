@@ -11,6 +11,7 @@ import { state } from './state.js';
 import { renderSaborCard, renderComboCard, renderTicket, renderReview } from './dom.js';
 import { MENU_SABORES, COMBOS, RESEÑAS } from './data.js';
 import { checkAvailability } from './logic.js';
+import { initHeroRandomizer } from './heroRandomizer.js';
 
 /* ── Registrar plugins GSAP ── */
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -42,6 +43,7 @@ const init = () => {
     setupHeaderScroll();
     setupHamburgerMenu();
     setupBentoExpansion();
+    initHeroRandomizer();
 
     /* Suscripción reactiva al estado del pedido */
     state.subscribe((pedido) => {

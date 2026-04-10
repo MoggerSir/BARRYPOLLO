@@ -100,6 +100,7 @@ const validarExtrasPendientes = (container) => {
    ============================================================ */
 export const renderSaborCard = (sabor) => {
     const container = CrearElemento('article', {
+        id:        sabor.id,
         classList: ['bento-item', 'sabor-card'],
         dataset:   { id: sabor.id, type: 'sabor' },
         children: [
@@ -200,6 +201,7 @@ export const renderSaborCard = (sabor) => {
    ============================================================ */
 export const renderComboCard = (combo) => {
     const container = CrearElemento('article', {
+        id:        combo.id,
         classList: ['bento-item', 'combo-card'],
         dataset:   { id: combo.id, type: 'combo' },
         children: [
