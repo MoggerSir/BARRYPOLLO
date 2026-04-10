@@ -14,7 +14,8 @@ class StateManager {
             salsa: '',
             extras: [],
             cantidad: 1,
-            total: 0
+            total: 0,
+            direccion: ''
         };
         
         this.listeners = [];
@@ -79,7 +80,8 @@ class StateManager {
             precio: 0,
             extras: [],
             cantidad: 1,
-            total: 0
+            total: 0,
+            direccion: ''
         };
         sessionStorage.removeItem('barry_pedido');
         this.publish();

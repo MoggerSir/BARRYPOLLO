@@ -1313,6 +1313,62 @@ header.scrolled {
     opacity: 0.6;
 }
 
+/* ── TICKET ADDRESS SECTION ── */
+.ticket-address-group {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #D0CCc4;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ticket-address-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+}
+
+.ticket-address-input {
+    width: 100%;
+    min-height: 80px;
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid #D0CCc4;
+    border-radius: 6px;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: #1A1A1A;
+    resize: none;
+    transition: all 0.3s ease;
+}
+
+.ticket-address-input:focus {
+    outline: none;
+    background: #fff;
+    border-color: var(--rojoPrincipal);
+    box-shadow: 0 0 0 3px rgba(200, 74, 58, 0.08);
+}
+
+.ticket-address-input::placeholder {
+    color: #AAA;
+    font-style: italic;
+}
+
+.ticket-address-input.has-error {
+    border-color: #e74c3c;
+    background: #fff5f5;
+    animation: shakeError 0.4s ease-in-out;
+}
+
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
 /* ============================================================
    REVIEWS
    ============================================================ */

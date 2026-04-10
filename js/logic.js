@@ -44,7 +44,13 @@ export const addExtra = (tipo, id) => {
         if (existing) {
             existing.cantidad += 1;
         } else {
-            currentExtras.push({ ...item, tipo, cantidad: 1 });
+            // Usamos precioVenta como el precio real del extra
+            currentExtras.push({ 
+                ...item, 
+                tipo, 
+                cantidad: 1,
+                precioExtra: item.precioVenta || 0 // Mapeamos para compatibilidad con state.js
+            });
         }
         
         state.actualizar({ extras: currentExtras });
@@ -91,12 +97,18 @@ export const generateWhatsAppLink = () => {
     if (p.extras.length > 0) {
         text += `\n*Extras:*\n`;
         p.extras.forEach(e => {
-            text += `- ${e.cantidad}x ${e.nombre} (+$${e.precioExtra * e.cantidad})\n`;
+            const subtotal = e.precioExtra * e.cantidad;
+            text += `- ${e.cantidad}x ${e.nombre} (+$${subtotal})\n`;
         });
     }
     
-    text += `\n*Total estimado: $${p.total}*\n`;
-    text += `\nDirección de Barry Pollo: ${NEGOCIO.direccion}`;
+    text += `\n*Total estimado: $${p.total}*`;
+    
+    if (p.direccion && p.direccion.trim().length > 0) {
+        text += `\n\n*Dirección de Entrega:*\n${p.direccion.trim()}`;
+    }
+
+    text += `\n\nDirección de Barry Pollo: ${NEGOCIO.direccion}`;
     
     const encodedText = encodeURIComponent(text);
     return `https://wa.me/${NEGOCIO.whatsapp}?text=${encodedText}`;

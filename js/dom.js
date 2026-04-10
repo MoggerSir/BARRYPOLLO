@@ -394,8 +394,8 @@ const renderExtraRow = (tipo, label) => {
             CrearElemento('option', { value: '', textContent: `+ ${label}` }),
             ...options.map(o => CrearElemento('option', {
                 value:       o.id,
-                textContent: o.precioExtra > 0
-                    ? `${o.nombre} (+$${o.precioExtra})`
+                textContent: o.precioVenta > 0
+                    ? `${o.nombre} (+$${o.precioVenta})`
                     : o.nombre
             }))
         ]
@@ -544,6 +544,25 @@ export const renderTicket = (pedido) => {
                                         ...extraRows
                                     ] : []),
 
+                                    /* Sección de Dirección */
+                                    CrearElemento('div', {
+                                        classList: 'ticket-address-group',
+                                        children: [
+                                            CrearElemento('label', { 
+                                                classList: 'ticket-address-label', 
+                                                textContent: 'Dirección de Envío' 
+                                            }),
+                                            CrearElemento('textarea', {
+                                                classList: 'ticket-address-input',
+                                                placeholder: 'Calle, número, colonia y alguna referencia...',
+                                                value: pedido.direccion || '',
+                                                events: {
+                                                    input: (e) => state.actualizar({ direccion: e.target.value })
+                                                }
+                                            })
+                                        ]
+                                    }),
+
                                     /* Total */
                                     CrearElemento('hr', { classList: 'ticket-divider' }),
                                     CrearElemento('div', {
@@ -583,7 +602,22 @@ export const renderTicket = (pedido) => {
                                     document.createTextNode(' Confirmar y Pedir')
                                 ],
                                 events: {
-                                    click: () => window.open(generateWhatsAppLink(), '_blank')
+                                    click: () => {
+                                        const addr = (pedido.direccion || '').trim();
+                                        if (addr.length < 8) {
+                                            showToast('Dirección requerida', 'Por favor ingresa una dirección de entrega válida antes de pedir.', 'warning');
+                                            
+                                            // Efecto visual de error en el input
+                                            const input = document.querySelector('.ticket-address-input');
+                                            if (input) {
+                                                input.classList.add('has-error');
+                                                setTimeout(() => input.classList.remove('has-error'), 1000);
+                                                input.focus();
+                                            }
+                                            return;
+                                        }
+                                        window.open(generateWhatsAppLink(), '_blank');
+                                    }
                                 }
                             }),
                             CrearElemento('button', {

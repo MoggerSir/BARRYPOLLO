@@ -106,23 +106,23 @@ export const COMBOS = [
 
 export const OPCIONES = {
     guarniciones: [
-        { id: "arroz",      nombre: "Arroz Rojo",         precioExtra: 0  },
-        { id: "frijoles",   nombre: "Frijoles Charros",    precioExtra: 0  },
-        { id: "espagueti",  nombre: "Espagueti Verde",     precioExtra: 15 },
-        { id: "papas",      nombre: "Papas Salteadas",     precioExtra: 20 },
-        { id: "ensalada",   nombre: "Ensalada Fresca",     precioExtra: 10 }
+        { id: "arroz",      nombre: "Arroz Rojo",         precioExtra: 0,  precioVenta: 35 },
+        { id: "frijoles",   nombre: "Frijoles Charros",    precioExtra: 0,  precioVenta: 35 },
+        { id: "espagueti",  nombre: "Espagueti Verde",     precioExtra: 15, precioVenta: 50 },
+        { id: "papas",      nombre: "Papas Salteadas",     precioExtra: 20, precioVenta: 55 },
+        { id: "ensalada",   nombre: "Ensalada Fresca",     precioExtra: 10, precioVenta: 45 }
     ],
     aguas: [
-        { id: "jamaica",    nombre: "Jamaica",             precioExtra: 0  },
-        { id: "horchata",   nombre: "Horchata",            precioExtra: 0  },
-        { id: "limon",      nombre: "Limón con Chía",      precioExtra: 0  },
-        { id: "tamarindo",  nombre: "Tamarindo",           precioExtra: 0  }
+        { id: "jamaica",    nombre: "Jamaica",             precioExtra: 0,  precioVenta: 35 },
+        { id: "horchata",   nombre: "Horchata",            precioExtra: 0,  precioVenta: 35 },
+        { id: "limon",      nombre: "Limón con Chía",      precioExtra: 0,  precioVenta: 35 },
+        { id: "tamarindo",  nombre: "Tamarindo",           precioExtra: 0,  precioVenta: 35 }
     ],
     salsas: [
-        { id: "barrypotle", nombre: "Barrypotle (Chipotle)", precioExtra: 0 },
-        { id: "verde",      nombre: "Verde Tatemada",        precioExtra: 0 },
-        { id: "habanero",   nombre: "Habanero Barry (Extra Picante)", precioExtra: 5 },
-        { id: "roja",       nombre: "Roja de la Casa",       precioExtra: 0 }
+        { id: "barrypotle", nombre: "Barrypotle (Chipotle)", precioExtra: 0,  precioVenta: 10 },
+        { id: "verde",      nombre: "Verde Tatemada",        precioExtra: 0,  precioVenta: 10 },
+        { id: "habanero",   nombre: "Habanero Barry (Extra Picante)", precioExtra: 5,  precioVenta: 15 },
+        { id: "roja",       nombre: "Roja de la Casa",       precioExtra: 0,  precioVenta: 10 }
     ]
 };
 
@@ -248,7 +248,7 @@ export const NEGOCIO = {
     calificacion:   4.6,
     totalReseñas:   71,
     /* IMPORTANTE: Reemplazar con el número real de WhatsApp */
-    whatsapp:       "529981234567",
+    whatsapp:       "529982360704",
     instagram:      "barrypollo_cancun",
     googleMaps:     "https://maps.app.goo.gl/duVsKkPWHkPxDmGd8",
     direccion:      "Av. Huayacán, Cancún, Quintana Roo",

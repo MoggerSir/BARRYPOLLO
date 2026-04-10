@@ -154,9 +154,30 @@ const updateTicket = (pedido) => {
     const container = document.getElementById('ticket-container');
     if (!section || !container) return;
 
+    /* 
+     * ESTRATEGIA: Restaurar foco y posición del cursor.
+     * Al ser una arquitectura reactiva (re-render total), el input se destruye y recrea.
+     */
+    const activeElId = document.activeElement ? document.activeElement.classList.contains('ticket-address-input') : false;
+    let cursorStart = 0, cursorEnd = 0;
+
+    if (activeElId) {
+        cursorStart = document.activeElement.selectionStart;
+        cursorEnd = document.activeElement.selectionEnd;
+    }
+
     container.innerHTML = '';
     const ticketEl = renderTicket(pedido);
     container.appendChild(ticketEl);
+
+    // Restaurar el foco si el usuario estaba escribiendo en la dirección
+    if (activeElId) {
+        const newInput = container.querySelector('.ticket-address-input');
+        if (newInput) {
+            newInput.focus();
+            newInput.setSelectionRange(cursorStart, cursorEnd);
+        }
+    }
 
     if (pedido.id) {
         if (!section.classList.contains('has-order')) {
