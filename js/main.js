@@ -138,14 +138,34 @@ const renderReviews = () => {
     if (!grid) return;
 
     grid.innerHTML = '';
-    RESEÑAS.forEach((r, i) => {
+    RESEÑAS.forEach((r) => {
         const card = renderReview(r);
-        card.setAttribute('data-aos', 'fade-up');
-        card.setAttribute('data-aos-delay', String(i * 100));
         grid.appendChild(card);
     });
 
-    if (typeof AOS !== 'undefined') AOS.refresh();
+    /* 
+     * Animación con GSAP ScrollTrigger en lugar de AOS.
+     * AOS se rompe con grids grandes porque acumula observers y
+     * los delays escalonados chocan con el scroll rápido.
+     * GSAP maneja cada card de forma independiente y limpia.
+     */
+    const cards = grid.querySelectorAll('.review-card');
+    cards.forEach((card) => {
+        gsap.fromTo(card,
+            { opacity: 0, y: 28 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.55,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 92%',
+                    toggleActions: 'play none none none', // solo una vez, sin reverse
+                }
+            }
+        );
+    });
 };
 
 /* ============================================================
