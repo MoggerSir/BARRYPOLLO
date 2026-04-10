@@ -1,0 +1,222 @@
+/* ============================================================
+   Barry Pollo — animations.css
+   Keyframes, micro-interactions, AOS overrides, GSAP helpers
+   ============================================================ */
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+
+/* Float hero image */
+@keyframes float-hero {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-14px); }
+}
+
+/* Pulsing dot (availability) */
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.75); }
+}
+
+/* Scroll indicator bounce */
+@keyframes bounce-down {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Reveal expanded bento */
+@keyframes revealExpanded {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ticket slide up on entry */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Price count-up flash */
+@keyframes priceFlash {
+    0%, 100% { color: var(--rojoPrincipal); }
+    50%       { color: var(--naranjaBrillante); }
+}
+
+/* Shimmer on loading images */
+@keyframes shimmer {
+    0%   { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+}
+
+/* Button ripple */
+@keyframes ripple {
+    from { transform: scale(0); opacity: 0.4; }
+    to   { transform: scale(2.5); opacity: 0; }
+}
+
+/* Tag badge float in */
+@keyframes tagFloatIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade in simple */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ============================================================
+   GSAP HELPERS
+   ============================================================ */
+
+/* Clase de inicio para elementos GSAP (antes de animar) */
+.gsap-hidden {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Will-change hints para elementos que GSAP va a animar */
+.hero-title,
+.hero-subtitle,
+.hero-actions,
+.hero-image img {
+    will-change: transform, opacity;
+}
+
+/* ============================================================
+   AOS OVERRIDES
+   ============================================================ */
+
+/* Forzar duración consistente */
+[data-aos] {
+    transition-duration: 0.75s !important;
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1) !important;
+}
+
+/* ============================================================
+   MICRO-INTERACTIONS — CSS-ONLY
+   ============================================================ */
+
+/* Botón primario ripple effect */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    border-radius: inherit;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.btn-primary:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Select focus ring animado */
+.aesthetic-select {
+    transition: border-color 0.2s ease, box-shadow 0.3s ease, background 0.2s ease;
+}
+
+/* Tag badges: animación de entrada */
+.card-tags .tag-badge {
+    animation: tagFloatIn 0.4s var(--bento-physics) both;
+}
+
+.card-tags .tag-badge:nth-child(2) { animation-delay: 0.08s; }
+.card-tags .tag-badge:nth-child(3) { animation-delay: 0.16s; }
+
+/* Review cards hover lift */
+.review-card {
+    will-change: transform;
+}
+
+/* ============================================================
+   TICKET ANIMATIONS
+   ============================================================ */
+
+.ticket-appearance {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Precio actualizado — flash */
+.total-price.updating {
+    animation: priceFlash 0.5s ease;
+}
+
+/* Extra item entry */
+.ticket-row.new-item {
+    animation: fadeIn 0.3s ease both;
+}
+
+/* ============================================================
+   IMAGEN PLACEHOLDER (mientras carga)
+   ============================================================ */
+.card-image-wrapper img {
+    background: linear-gradient(90deg, var(--negroMadera) 0%, var(--grisOscuro) 50%, var(--negroMadera) 100%);
+    background-size: 800px 100%;
+}
+
+.card-image-wrapper img:not([src]),
+.card-image-wrapper img[src=""] {
+    animation: shimmer 1.5s linear infinite;
+    background: linear-gradient(90deg, var(--negroMadera) 25%, var(--grisOscuro) 50%, var(--negroMadera) 75%);
+    background-size: 400px 100%;
+}
+
+/* ============================================================
+   SCROLL REVEAL — Clases utilitarias
+   ============================================================ */
+
+.reveal-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s var(--bento-physics);
+}
+
+.reveal-up.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* ============================================================
+   REDUCED MOTION — Accesibilidad
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero-image img {
+        animation: none;
+    }
+
+    .scroll-indicator {
+        animation: none;
+    }
+}

@@ -1,0 +1,426 @@
+/* ============================================================
+   Barry Pollo — responsive.css
+   Media queries — Mobile-first
+   ============================================================ */
+
+/* ============================================================
+   BASE MOBILE (ya está en elements.css, aquí ajustes específicos)
+   ≤ 480px — Teléfonos pequeños
+   ============================================================ */
+@media (max-width: 480px) {
+    :root {
+        --header-height: 64px;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: auto;
+        padding: 100px 0 60px;
+    }
+
+    .hero-layout {
+        flex-direction: column;
+        text-align: center;
+        gap: 32px;
+        width: 94%;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        padding: 0;
+        order: 1;
+    }
+
+    .hero-image {
+        max-width: 100%;
+        width: 100%;
+        order: 2;
+    }
+
+    .hero-image img {
+        max-width: 260px;
+        margin: 0 auto; /* funciona con display:block (img ya lo es por reset) */
+    }
+
+    .availability-banner {
+        margin: 0 auto 20px;
+    }
+
+    .hero-title {
+        font-size: clamp(2.6rem, 12vw, 3.8rem);
+        letter-spacing: -1.5px;
+    }
+
+    .hero-subtitle {
+        margin: 0 auto 28px;
+        font-size: 0.95rem;
+    }
+
+    .hero-actions {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .hero-rating {
+        justify-content: center;
+    }
+
+    /* Section headers */
+    .section-title {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+
+    .section-subtitle {
+        font-size: 0.92rem;
+    }
+
+    /* Bento: siempre 1 columna */
+    .bento-grid-contenedor {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+    }
+
+    .bento-item {
+        min-height: 260px;
+    }
+
+    /* Ticket */
+    .ticket-inner {
+        padding: 28px 20px 24px;
+    }
+
+    .ticket-footer {
+        padding: 16px 20px;
+        flex-direction: column;
+    }
+
+    .btn-whatsapp-order {
+        font-size: 0.88rem;
+    }
+
+    .btn-clear-ticket {
+        justify-content: center;
+    }
+
+    /* Reviews */
+    .reviews-summary {
+        flex-direction: column;
+        text-align: center;
+        gap: 14px;
+        padding: 24px 20px;
+    }
+
+    .rating-details {
+        align-items: center;
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Footer */
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+}
+
+/* ============================================================
+   TABLET PORTRAIT
+   481px – 768px
+   ============================================================ */
+@media (min-width: 481px) and (max-width: 768px) {
+    :root {
+        --header-height: 68px;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: auto;
+        padding: 108px 0 70px;
+    }
+
+    .hero-layout {
+        flex-direction: column;
+        text-align: center;
+        gap: 36px;
+    }
+
+    .hero-content {
+        max-width: 540px;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .hero-image {
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    .hero-image img {
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .availability-banner,
+    .hero-actions,
+    .hero-rating {
+        justify-content: center;
+    }
+
+    .availability-banner {
+        margin: 0 auto 20px;
+    }
+
+    /* Bento: 1 columna en tablet portrait */
+    .bento-grid-contenedor {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+    }
+
+    /* Reviews */
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Footer */
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ============================================================
+   HAMBURGER MENU — Visible en ≤ 768px
+   ============================================================ */
+@media (max-width: 768px) {
+    .nav-links {
+        /* Se convierte en menú overlay */
+        display: none;
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        background: rgba(13, 13, 13, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 20px 24px 30px;
+        gap: 4px;
+        border-bottom: var(--borderSubtle);
+        z-index: 999;
+        animation: slideDown 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .nav-links.is-open {
+        display: flex;
+    }
+
+    .nav-links a:not(.btn-primary) {
+        padding: 14px 16px;
+        font-size: 1rem;
+        border-radius: var(--radius-xs);
+    }
+
+    .nav-links .btn-primary {
+        width: 100%;
+        justify-content: center;
+        margin-top: 8px;
+        padding: 14px 20px;
+        font-size: 0.95rem;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   TABLET LANDSCAPE / DESKTOP SMALL
+   769px – 1024px
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-layout {
+        gap: 24px;
+    }
+
+    .hero-image {
+        max-width: 380px;
+    }
+
+    .hero-image img {
+        max-width: 340px;
+    }
+
+    /* Bento: 2 columnas en tablet landscape para sabores */
+    .bento-grid-contenedor {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Combos siempre 2 columnas */
+    .combos-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Footer */
+    .footer-inner {
+        grid-template-columns: 1.2fr 1fr 1fr;
+        gap: 36px;
+    }
+}
+
+/* ============================================================
+   DESKTOP
+   1025px+
+   ============================================================ */
+@media (min-width: 1025px) {
+    /* Hero: side by side */
+    .hero-layout {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .hero-content {
+        flex: 1;
+        text-align: left;
+    }
+
+    .hero-image {
+        flex: 1;
+        max-width: 520px;
+    }
+
+    .availability-banner {
+        margin: 0 0 24px;
+    }
+
+    /* Bento: 3 columnas con expansión líquida */
+    .bento-grid-contenedor {
+        grid-template-columns: repeat(3, 1fr);
+        min-height: 620px;
+    }
+
+    /* Combos: 2 columnas */
+    .combos-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        min-height: 500px !important;
+    }
+
+    /* Reviews */
+    .reviews-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ============================================================
+   DESKTOP WIDE
+   1280px+
+   ============================================================ */
+@media (min-width: 1280px) {
+    .hero-image {
+        max-width: 580px;
+    }
+
+    .bento-grid-contenedor {
+        min-height: 680px;
+    }
+
+    .ticket-wrapper {
+        max-width: 620px;
+    }
+}
+
+/* ============================================================
+   BENTO PANEL OVERLAY — Mobile
+   ============================================================ */
+
+@media (max-width: 768px) {
+    /* En mobile el panel se posiciona fixed para salir del grid */
+    .bento-panel {
+        position: fixed !important;
+        left: 12px !important;
+        right: 12px !important;
+        top: 70px !important;
+        bottom: 12px !important;
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .bento-panel .bento-expanded {
+        padding: 28px 20px 20px;
+    }
+
+    .bento-backdrop {
+        position: fixed !important;
+        inset: 0 !important;
+        border-radius: 0 !important;
+        z-index: 49;
+    }
+
+    .expanded-price {
+        font-size: 1.4rem;
+    }
+
+    .expanded-footer {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .expanded-footer .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .combo-options {
+        gap: 10px;
+    }
+}
+
+/* ============================================================
+   TICKET RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px) {
+    .ticket-paper {
+        border-radius: 4px 4px 0 0;
+    }
+
+    .ticket-total-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .total-price {
+        font-size: 1.6rem;
+    }
+}
+
+/* ============================================================
+   REVIEWS RESPONSIVE
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .reviews-summary {
+        max-width: 360px;
+    }
+}
