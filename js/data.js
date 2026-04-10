@@ -247,13 +247,17 @@ export const NEGOCIO = {
     nombre:         "Barry Pollo",
     calificacion:   4.6,
     totalReseñas:   71,
-    /* IMPORTANTE: Reemplazar con el número real de WhatsApp */
     whatsapp:       "529982360704",
     instagram:      "barrypollo_cancun",
     googleMaps:     "https://maps.app.goo.gl/duVsKkPWHkPxDmGd8",
     direccion:      "Av. Huayacán, Cancún, Quintana Roo",
     horarios: {
-        apertura: 12,  /* 12:00 PM */
-        cierre:   21   /* 9:00 PM  */
+        0: { apertura: 13, cierre: 17 }, // Domingo
+        1: null,                        // Lunes (Cerrado)
+        2: { apertura: 13, cierre: 17 }, // Martes
+        3: { apertura: 13, cierre: 17 }, // Miércoles
+        4: { apertura: 13, cierre: 17 }, // Jueves
+        5: { apertura: 13, cierre: 17 }, // Viernes
+        6: { apertura: 13, cierre: 17 }  // Sábado
     }
 };

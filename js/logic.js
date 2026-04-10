@@ -12,18 +12,31 @@ import { state } from './state.js';
  */
 export const checkAvailability = () => {
     const now = new Date();
+    const day = now.getDay();
     const currentHour = now.getHours();
-    const { apertura, cierre } = NEGOCIO.horarios;
+    const todayHours = NEGOCIO.horarios[day];
+    
+    if (!todayHours) {
+        return { 
+            isOpen: false, 
+            message: `Cerrado hoy • Abrimos mañana a la 1:00 PM` 
+        };
+    }
+    
+    const { apertura, cierre } = todayHours;
     
     if (currentHour >= apertura && currentHour < cierre) {
         return { 
             isOpen: true, 
-            message: `Abierto ahora • Cierra a las ${cierre}:00 PM` 
+            message: `Abierto ahora • Cierra a las 5:00 PM` 
         };
     } else {
+        const message = currentHour < apertura 
+            ? `Cerrado • Abre hoy a la 1:00 PM`
+            : `Cerrado • Abrimos mañana a la 1:00 PM`;
         return { 
             isOpen: false, 
-            message: `Cerrado • Abrimos a las ${apertura}:00 PM` 
+            message: message 
         };
     }
 };
