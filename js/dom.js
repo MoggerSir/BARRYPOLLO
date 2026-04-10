@@ -76,19 +76,22 @@ const renderOptionSelect = (tipo, label, index = 0) => {
 };
 
 /**
- * Verifica si hay extras seleccionados en dropdowns pero con cantidad 0 (sin pulsar +).
- * Centraliza la lógica para evitar repetición en Sabores y Combos.
+ * Verifica que todos los extras visualmente seleccionados estén en el estado con cantidad >= 1.
+ * Gracias al auto-add en el evento change, esto solo falla si hay algún edge case raro.
  */
 const validarExtrasPendientes = (container) => {
     const selects = container.querySelectorAll('.extra-select');
     for (const select of selects) {
         const id = select.value;
         if (!id) continue;
-
-        const isAdded = state.pedidoActual.extras.some(e => e.id === id);
+        const isAdded = state.pedidoActual.extras.some(e => e.id === id && e.cantidad >= 1);
         if (!isAdded) {
             const itemName = select.options[select.selectedIndex].text.split('(')[0].trim();
-            showToast('¡Olvidas un extra!', `Seleccionaste "${itemName}", pero falta añadirlo con el botón (+).`, 'warning');
+            showToast(
+                '¡Cantidad requerida!',
+                `Seleccionaste "${itemName}" pero la cantidad es 0. Usa el botón (+) para añadirlo.`,
+                'warning'
+            );
             return false;
         }
     }
@@ -189,6 +192,9 @@ export const renderSaborCard = (sabor) => {
                                             cantidad: 1
                                         });
                                         showToast('¡Añadido!', `${sabor.nombre} se sumó a tu pedido.`, 'success');
+
+                                        /* Cerrar el panel expandido y desplazarse al ticket */
+                                        document.dispatchEvent(new CustomEvent('barry:closePanel'));
                                     }
                                 }
                             })
@@ -307,6 +313,20 @@ export const renderComboCard = (combo) => {
                                     click: (e) => {
                                         e.stopPropagation();
 
+                                        /* 
+                                         * Sincronizar estado desde el DOM antes de validar.
+                                         * El panel mueve el nodo al overlay y prepararNuevoPedido
+                                         * borra el estado, pero los selects retienen su valor visual.
+                                         * Forzamos la sincronización leyendo cada select directamente.
+                                         */
+                                        const expandedNode = container.querySelector('.bento-expanded') 
+                                            || document.querySelector('.bento-panel .bento-expanded');
+
+                                        if (expandedNode) {
+                                            const syncSelects = expandedNode.querySelectorAll('.aesthetic-select:not(.extra-select)');
+                                            syncSelects.forEach(sel => sel.dispatchEvent(new Event('change')));
+                                        }
+
                                         /* Validación Dinámica según Configuración */
                                         const actual = state.pedidoActual;
                                         const errors = [];
@@ -332,6 +352,9 @@ export const renderComboCard = (combo) => {
                                             cantidad:         1
                                         });
                                         showToast('¡Añadido!', `${combo.nombre} se sumó a tu pedido.`, 'success');
+
+                                        /* Cerrar el panel expandido y desplazarse al ticket */
+                                        document.dispatchEvent(new CustomEvent('barry:closePanel'));
                                     }
                                 }
                             })
@@ -397,11 +420,25 @@ const renderExtraRow = (tipo, label) => {
 
     const selectEl = CrearElemento('select', {
         classList: ['aesthetic-select', 'extra-select'],
+        dataset:   { tipo },
         style:     { flex: '1' },
         events: {
             change: (e) => {
-                selectedId = e.target.value || null;
-                stepperCount.textContent = '0';
+                const prevId   = selectedId;
+                selectedId     = e.target.value || null;
+
+                // Remover el extra anterior si había uno distinto
+                if (prevId && prevId !== selectedId) {
+                    removeExtra(prevId);
+                }
+
+                // Auto-añadir el nuevo con cantidad 1
+                if (selectedId) {
+                    addExtra(tipo, selectedId);
+                } else {
+                    // Volvió al placeholder: resetear contador visual
+                    stepperCount.textContent = '0';
+                }
             }
         },
         children: [

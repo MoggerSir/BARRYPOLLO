@@ -351,6 +351,12 @@ const closeHamburger = () => {
    Al cerrar, el nodo se devuelve al item original.
    ============================================================ */
 const setupBentoExpansion = () => {
+    /* Escuchar el evento disparado por los botones de pedido en dom.js */
+    document.addEventListener('barry:closePanel', () => {
+        const grid = document.querySelector('.bento-grid-contenedor.has-expansion');
+        if (grid) closeExpansion(grid);
+    });
+
     document.querySelectorAll('.bento-grid-contenedor').forEach(grid => {
         const items = grid.querySelectorAll('.bento-item');
 
