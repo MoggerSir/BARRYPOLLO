@@ -1,0 +1,93 @@
+<svg width="64" height="64" viewBox="0 0 680 720" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Barry Pollo logo</title>
+  <desc>Logo Barry Pollo desde 1968</desc>
+
+
+
+  <!-- ARCO LADRILLOS SUPERIOR -->
+  <g fill="#2a1a0e">
+    <rect x="316" y="58" width="48" height="26" rx="3"/>
+    <rect x="253" y="73" width="46" height="26" rx="3" transform="rotate(-20 276 86)"/>
+    <rect x="192" y="115" width="46" height="26" rx="3" transform="rotate(-40 215 128)"/>
+    <rect x="148" y="175" width="46" height="26" rx="3" transform="rotate(-60 171 188)"/>
+    <rect x="127" y="246" width="46" height="26" rx="3" transform="rotate(-78 150 259)"/>
+    <rect x="381" y="73" width="46" height="26" rx="3" transform="rotate(20 404 86)"/>
+    <rect x="442" y="115" width="46" height="26" rx="3" transform="rotate(40 465 128)"/>
+    <rect x="486" y="175" width="46" height="26" rx="3" transform="rotate(60 509 188)"/>
+    <rect x="507" y="246" width="46" height="26" rx="3" transform="rotate(78 530 259)"/>
+  </g>
+
+  <!-- POLLO ASADO -->
+  <ellipse cx="340" cy="308" rx="110" ry="16" fill="#c0321a"/>
+  <ellipse cx="340" cy="304" rx="96" ry="10" fill="#2a1a0e"/>
+  <ellipse cx="345" cy="258" rx="72" ry="52" fill="#c0321a"/>
+  <path d="M300 248 Q320 238 340 248 Q360 238 380 248" fill="none" stroke="#2a1a0e" stroke-width="3" stroke-linecap="round"/>
+  <path d="M298 264 Q320 254 345 264 Q368 254 390 264" fill="none" stroke="#2a1a0e" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="284" cy="237" rx="18" ry="22" fill="#c0321a"/>
+  <circle cx="268" cy="220" r="18" fill="#c0321a"/>
+  <polygon points="252,219 244,215 252,224" fill="#c0321a"/>
+  <circle cx="264" cy="216" r="3.5" fill="#2a1a0e"/>
+  <path d="M270 204 Q274 196 278 204 Q282 196 286 204" fill="#c0321a"/>
+  <path d="M395 248 Q425 232 428 258 Q425 278 395 275 Z" fill="#c0321a"/>
+  <path d="M398 252 Q420 240 422 260" fill="none" stroke="#2a1a0e" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="315" y1="304" x2="300" y2="322" stroke="#c0321a" stroke-width="7" stroke-linecap="round"/>
+  <line x1="300" y1="322" x2="288" y2="332" stroke="#c0321a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="300" y1="322" x2="302" y2="334" stroke="#c0321a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="300" y1="322" x2="312" y2="332" stroke="#c0321a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="365" y1="304" x2="378" y2="322" stroke="#c0321a" stroke-width="7" stroke-linecap="round"/>
+  <line x1="378" y1="322" x2="388" y2="332" stroke="#c0321a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="378" y1="322" x2="376" y2="334" stroke="#c0321a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="378" y1="322" x2="366" y2="332" stroke="#c0321a" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- B -->
+  <path d="M130 340 L130 430 L174 430 Q204 430 204 408 Q204 393 190 387 Q204 381 204 363 Q204 340 174 340 Z
+           M150 358 L170 358 Q184 358 184 366 Q184 375 170 375 L150 375 Z
+           M150 413 L170 413 Q186 413 186 421 Q186 430 170 430 L150 430 Z" fill="#c0321a"/>
+
+  <!-- FUEGO -->
+  <path d="M232 432 Q228 410 236 392 Q231 407 242 396 Q239 378 251 362 Q248 380 260 370 Q264 386 256 402 Q268 384 274 366 Q278 386 268 404 Q280 390 286 372 Q290 394 280 412 Q288 402 290 388 Q294 408 283 424 Q274 434 258 434 Q242 434 232 432Z" fill="#c0321a"/>
+  <path d="M242 426 Q239 410 246 396 Q242 408 251 400 Q248 386 258 374 Q255 388 265 380 Q268 392 262 406 Q270 392 275 378 Q278 394 270 408 Q277 400 279 388 Q281 404 273 418 Q266 426 255 426 Q244 426 242 426Z" fill="#2a1a0e"/>
+
+  <!-- R primera -->
+  <path d="M308 340 L308 430 L328 430 L328 394 L342 394 L366 430 L390 430 L362 392 Q380 384 380 362 Q380 340 352 340 Z
+           M328 358 L350 358 Q360 358 360 367 Q360 377 350 377 L328 377 Z" fill="#c0321a"/>
+
+  <!-- R segunda -->
+  <path d="M398 340 L398 430 L418 430 L418 394 L432 394 L456 430 L480 430 L452 392 Q470 384 470 362 Q470 340 442 340 Z
+           M418 358 L440 358 Q450 358 450 367 Q450 377 440 377 L418 377 Z" fill="#c0321a"/>
+
+  <!-- Y -->
+  <path d="M488 340 L514 384 L514 430 L534 430 L534 384 L560 340 L538 340 L524 366 L510 340 Z" fill="#c0321a"/>
+
+  <!-- P -->
+  <path d="M140 448 L140 540 L160 540 L160 506 L184 506 Q214 506 214 476 Q214 448 184 448 Z
+           M160 466 L182 466 Q194 466 194 477 Q194 488 182 488 L160 488 Z" fill="#c0321a"/>
+
+  <!-- O -->
+  <path d="M259 448 Q222 448 222 494 Q222 540 259 540 Q296 540 296 494 Q296 448 259 448 Z
+           M259 466 Q276 466 276 494 Q276 522 259 522 Q242 522 242 494 Q242 466 259 466 Z" fill="#c0321a"/>
+
+  <!-- L -->
+  <rect x="304" y="448" width="20" height="92" rx="2" fill="#c0321a"/>
+  <rect x="304" y="522" width="52" height="18" rx="2" fill="#c0321a"/>
+
+  <!-- L -->
+  <rect x="378" y="448" width="20" height="92" rx="2" fill="#c0321a"/>
+  <rect x="378" y="522" width="52" height="18" rx="2" fill="#c0321a"/>
+
+  <!-- O -->
+  <path d="M491 448 Q454 448 454 494 Q454 540 491 540 Q528 540 528 494 Q528 448 491 448 Z
+           M491 466 Q508 466 508 494 Q508 522 491 522 Q474 522 474 494 Q474 466 491 466 Z" fill="#c0321a"/>
+
+  <!-- BANDA LADRILLOS -->
+  <g fill="#2a1a0e">
+    <rect x="130" y="558" width="60" height="22" rx="3"/>
+    <rect x="198" y="558" width="60" height="22" rx="3"/>
+    <rect x="266" y="558" width="60" height="22" rx="3"/>
+    <rect x="334" y="558" width="60" height="22" rx="3"/>
+    <rect x="402" y="558" width="60" height="22" rx="3"/>
+    <rect x="470" y="558" width="60" height="22" rx="3"/>
+  </g>
+
+  <text x="340" y="616" text-anchor="middle" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="4" fill="#c0321a">-DESDE 1968-</text>
+</svg>

@@ -192,11 +192,24 @@ header.scrolled {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     font-weight: 800;
     font-size: 1.35rem;
     letter-spacing: -1px;
     color: var(--blancoTexto);
     transition: opacity 0.3s;
+}
+
+.logo-img {
+    height: 38px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.footer-logo .logo-img {
+    height: 50px;
 }
 
 .logo-accent {
