@@ -97,13 +97,14 @@ export const generateWhatsAppLink = () => {
     text += `*${p.nombre}* - $${p.precio}\n`;
     
     // Opciones dinámicas del combo
+    const tiposValidos = ['guarnicion_', 'agua_', 'salsa_'];
     Object.keys(p).forEach(key => {
-        if ((key.startsWith('guarnicion_') || key.startsWith('agua_') || key.startsWith('salsa_')) && !key.endsWith('Precio')) {
-            if (p[key]) {
-                const label = key.split('_')[0].charAt(0).toUpperCase() + key.split('_')[0].slice(1);
-                const num   = parseInt(key.split('_')[1]) + 1;
-                text += `- ${label} ${num}: ${p[key]}\n`;
-            }
+        const esOpcion = tiposValidos.some(t => key.startsWith(t)) && !key.endsWith('Precio');
+        
+        if (esOpcion && p[key]) {
+            const label = key.split('_')[0].charAt(0).toUpperCase() + key.split('_')[0].slice(1);
+            const num   = parseInt(key.split('_')[1]) + 1;
+            text += `- ${label} ${num}: ${p[key]}\n`;
         }
     });
     

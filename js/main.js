@@ -390,16 +390,8 @@ const openExpansion = (grid, item) => {
         expansionCleanup = null;
     }
 
-    /* Resetear opciones temporales al abrir un nuevo item */
-    state.actualizar({
-        guarnicion:       '',
-        guarnicionPrecio: 0,
-        agua:             '',
-        aguaPrecio:       0,
-        salsa:            '',
-        salsaPrecio:      0,
-        extras:           []
-    });
+    /* Resetear estado para un nuevo item (limpiando selecciones previas) */
+    state.prepararNuevoPedido();
 
     /* El nodo .bento-expanded que vive dentro del item */
     const expandedNode = item.querySelector('.bento-expanded');

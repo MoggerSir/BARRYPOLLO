@@ -3,21 +3,19 @@
  * Implementado con patrón Pub/Sub para reactividad simple.
  */
 
+const INITIAL_STATE = {
+    id: null,
+    nombre: '',
+    precio: 0,
+    extras: [],
+    cantidad: 1,
+    total: 0,
+    direccion: ''
+};
+
 class StateManager {
     constructor() {
-        this.pedidoActual = {
-            id: null,
-            nombre: '',
-            precio: 0,
-            guarnicion: '',
-            agua: '',
-            salsa: '',
-            extras: [],
-            cantidad: 1,
-            total: 0,
-            direccion: ''
-        };
-        
+        this.pedidoActual = { ...INITIAL_STATE };
         this.listeners = [];
         
         // Cargar estado previo si existe
@@ -33,7 +31,6 @@ class StateManager {
 
     subscribe(callback) {
         this.listeners.push(callback);
-        // Llamada inmediata para sincronización inicial
         callback(this.pedidoActual);
         return () => {
             this.listeners = this.listeners.filter(l => l !== callback);
@@ -46,14 +43,19 @@ class StateManager {
 
     actualizar(cambios) {
         this.pedidoActual = { ...this.pedidoActual, ...cambios };
-        
-        // Calcular total
         this.calcularTotal();
-        
-        // Persistir
         sessionStorage.setItem('barry_pedido', JSON.stringify(this.pedidoActual));
-        
-        // Notificar
+        this.publish();
+    }
+
+    /**
+     * Prepara el estado para un nuevo item (Sabor o Combo) sin perder la dirección.
+     * Purga todas las keys dinámicas de selecciones previas.
+     */
+    prepararNuevoPedido() {
+        const direccionGuardada = this.pedidoActual.direccion || '';
+        this.pedidoActual = { ...INITIAL_STATE, direccion: direccionGuardada };
+        this.calcularTotal();
         this.publish();
     }
 
@@ -62,7 +64,7 @@ class StateManager {
         let extrasTotal = (this.pedidoActual.extras || []).reduce((acc, extra) => 
             acc + ((extra.precioExtra || 0) * (extra.cantidad || 1)), 0);
         
-        // Sumar todos los recargos dinámicos (guarniciones, aguas, salsas, etc.)
+        // Sumar todos los recargos dinámicos usando el spread de INITIAL_STATE como base limpia
         let opcionesSurcharge = 0;
         Object.keys(this.pedidoActual).forEach(key => {
             if (key.endsWith('Precio') && typeof this.pedidoActual[key] === 'number') {
@@ -74,15 +76,7 @@ class StateManager {
     }
 
     limpiar() {
-        this.pedidoActual = {
-            id: null,
-            nombre: '',
-            precio: 0,
-            extras: [],
-            cantidad: 1,
-            total: 0,
-            direccion: ''
-        };
+        this.pedidoActual = { ...INITIAL_STATE };
         sessionStorage.removeItem('barry_pedido');
         this.publish();
     }

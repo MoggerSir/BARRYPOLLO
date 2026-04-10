@@ -137,7 +137,7 @@ export const renderSaborCard = (sabor) => {
                             CrearElemento('h2', { textContent: sabor.nombre }),
                             CrearElemento('div', {
                                 classList: 'rating-row',
-                                children:  renderStars(4.5 + Math.random() * 0.5)
+                                children:  renderStars(5) // Puntuación premium fija
                             })
                         ]
                     }),
@@ -375,7 +375,7 @@ const renderExtraRow = (tipo, label) => {
     });
 
     /* Actualizar contador del stepper cuando cambia el estado */
-    state.subscribe((pedido) => {
+    const unsub = state.subscribe((pedido) => {
         if (!selectedId) return;
         const extra    = (pedido.extras || []).find(e => e.id === selectedId);
         stepperCount.textContent = extra ? String(extra.cantidad) : '0';
@@ -400,6 +400,10 @@ const renderExtraRow = (tipo, label) => {
             }))
         ]
     });
+
+    // Aunque las cartas son estables, si se implementa filtrado dinámico 
+    // este cleanup evitará duplicación de listeners.
+    selectEl.dataset.unsub = unsub;
 
     return CrearElemento('div', {
         style: { display: 'flex', gap: '8px', alignItems: 'center' },
@@ -463,7 +467,7 @@ export const renderTicket = (pedido) => {
 
     // Generar filas para opciones dinámicas del combo (guarnicion_0, etc.)
     const optionRows = Object.keys(pedido)
-        .filter(key => (key.startsWith('guarnicion_') || key.startsWith('aguas_') || key.startsWith('salsa_')) && !key.endsWith('Precio'))
+        .filter(key => (key.startsWith('guarnicion_') || key.startsWith('agua_') || key.startsWith('salsa_')) && !key.endsWith('Precio'))
         .filter(key => pedido[key]) 
         .map(key => {
             const precio = pedido[`${key}Precio`] || 0;
