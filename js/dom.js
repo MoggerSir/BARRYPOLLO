@@ -116,7 +116,13 @@ export const renderSaborCard = (sabor) => {
                     }),
                     CrearElemento('div', {
                         classList: 'card-image-wrapper',
-                        children: [CrearElemento('img', { src: sabor.imagen, alt: sabor.nombre, loading: 'lazy' })]
+                        children: [
+                            CrearElemento('img', { src: sabor.imagen, alt: sabor.nombre, loading: 'lazy' }),
+                            CrearElemento('div', {
+                                classList: 'card-expander-badge',
+                                children: [CrearElemento('i', { classList: 'iconoir-plus' })]
+                            })
+                        ]
                     }),
                     CrearElemento('div', {
                         classList: 'card-content',
@@ -217,7 +223,13 @@ export const renderComboCard = (combo) => {
                     }),
                     CrearElemento('div', {
                         classList: 'card-image-wrapper',
-                        children: [CrearElemento('img', { src: combo.imagen, alt: combo.nombre, loading: 'lazy' })]
+                        children: [
+                            CrearElemento('img', { src: combo.imagen, alt: combo.nombre, loading: 'lazy' }),
+                            CrearElemento('div', {
+                                classList: 'card-expander-badge',
+                                children: [CrearElemento('i', { classList: 'iconoir-plus' })]
+                            })
+                        ]
                     }),
                     CrearElemento('div', {
                         classList: 'card-content',

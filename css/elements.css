@@ -728,11 +728,63 @@ header.scrolled {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center bottom; /* El pollo suele estar en la parte inferior de la mesa */
     transition: transform 0.6s var(--bento-physics);
+    z-index: 1;
 }
 
-/* Eliminado object-fit contain anterior */
+.card-expander-badge {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+    background: rgba(18, 18, 18, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: var(--blancoTexto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    opacity: 0;
+    transform: scale(0.6) rotate(-15deg);
+    transition: 
+        opacity 0.4s ease,
+        transform 0.5s var(--bento-physics),
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+    pointer-events: none;
+    box-shadow: var(--shadowMd);
+}
+
+.card-expander-badge i {
+    font-size: 1.4rem;
+    transition: transform 0.3s ease;
+}
+
+/* ── HOVER STATES ── */
+.bento-item:hover .card-expander-badge {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    background: var(--rojoPrincipal);
+    box-shadow: 0 0 20px var(--glowRed), var(--shadowLg);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.bento-item:hover .card-expander-badge i {
+    transform: scale(1.1);
+}
+
+/* En mobile/touch no hay hover, así que la insignia debe estar visible siempre */
+@media (max-width: 768px) {
+    .card-expander-badge {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        background: rgba(18, 18, 18, 0.7); /* Ligeramente más opaco para legibilidad */
+    }
+}
 
 .bento-item:hover .card-image-wrapper img {
     transform: scale(1.06);
